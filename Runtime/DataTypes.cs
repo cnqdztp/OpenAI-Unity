@@ -164,7 +164,7 @@ namespace OpenAI
     public struct Url
     {
         [JsonProperty("url")]
-        public Uri UrlUrl { get; set; }
+        public string UrlUrl { get; set; }
     }
     #endregion
 
