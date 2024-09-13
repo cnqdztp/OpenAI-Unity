@@ -156,7 +156,15 @@ namespace OpenAI
         public string Text { get; set; }
 
         [JsonProperty("image_url", NullValueHandling = NullValueHandling.Ignore)]
-        public ImageUrl ImageUrl { get; set; }
+        public Url ImageUrl { get; set; }
+
+        [JsonProperty("video_url", NullValueHandling = NullValueHandling.Ignore)]
+        public Url VideoUrl { get; set; }
+    }
+    public struct Url
+    {
+        [JsonProperty("url")]
+        public Uri UrlUrl { get; set; }
     }
     #endregion
 
