@@ -104,8 +104,15 @@ namespace OpenAI
         public Dictionary<string, string> LogitBias { get; set; }
         public string User { get; set; }
         public string SystemFingerprint { get; set; }
+        
+        [JsonProperty("response_format", NullValueHandling = NullValueHandling.Ignore)]
+        public ResponseFormat ResponseFormat { get; set; }
     }
-
+    public struct ResponseFormat
+    {
+        [JsonProperty("type")]
+        public string Type { get; set; }
+    }
     public struct CreateChatCompletionResponse : IResponse
     {
         public ApiError Error { get; set; }
@@ -134,11 +141,23 @@ namespace OpenAI
     public struct ChatMessage
     {
         public string Role { get; set; }
-        public string Content { get; set; }
+        public List<Content> Content { get; set; }
+        public string Refusal { get; set; }
+        public string Name { get; set; }
         public string function_call { get; set; }
         public string tool_calls { get; set; }
     }
-    
+    public struct Content
+    {
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
+
+        [JsonProperty("image_url", NullValueHandling = NullValueHandling.Ignore)]
+        public ImageUrl ImageUrl { get; set; }
+    }
     #endregion
 
     #region Audio Transcriptions Data Types
